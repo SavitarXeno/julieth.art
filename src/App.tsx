@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom'
 
-import Contacto from './pages/Contacto'
 import Galeria from './pages/Galeria'
-import Servicios from './pages/Servicios'
 import Personajes from './pages/Personajes'
+import Servicios from './pages/Servicios'
+import Contacto from './pages/Contacto'
 
 /* 🧠 Hook: siempre scroll arriba al cambiar página */
 function ScrollToTop() {
@@ -23,42 +23,59 @@ function ScrollToTop() {
 function Home() {
   const navigate = useNavigate()
 
-useEffect(() => {
-  let triggered = false
-
-  const handleScroll = () => {
-    if (window.scrollY > 80 && !triggered) {
-      triggered = true
-      navigate('/galeria')
-    }
-  }
-
-  window.addEventListener('scroll', handleScroll)
-
-  return () => window.removeEventListener('scroll', handleScroll)
-}, [navigate])
-
   return (
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
       
-{/* 🖼️ BACKGROUND CONTROLADO */}
+{/* 🖼️ BACKGROUND */}
 <div className="absolute inset-0 z-0">
 
-  {/* Desktop (hero.jpg 2008x1167) */}
+{/* Desktop */}
+<div className="hidden md:block absolute inset-0 overflow-hidden">
+
+  {/* Fondo extendido difuminado */}
   <div
-    className="hidden md:block absolute inset-0 bg-cover bg-no-repeat"
+    className="
+      absolute inset-0
+      scale-125
+      blur-3xl
+      opacity-45
+      bg-cover bg-center bg-no-repeat
+    "
     style={{
       backgroundImage: "url('/hero.jpg')",
-      backgroundPosition: "center 42%", // 🔥 baja el foco sin crear “hueco” con el nav
+      backgroundPosition: "center center",
     }}
   />
 
-  {/* Mobile (hero3.jpg 1284x1363) */}
+  {/* Imagen principal */}
+  <div
+    className="
+      absolute inset-0
+      bg-cover bg-no-repeat
+    "
+    style={{
+      backgroundImage: "url('/hero.jpg')",
+
+      /* Baja ligeramente TODO el encuadre */
+      backgroundPosition: "center 15%",
+
+      /*
+        Ajuste fino:
+        50% = centro exacto
+        52% = baja apenas
+        55% = baja demasiado
+      */
+    }}
+  />
+
+</div>
+
+  {/* Mobile */}
   <div
     className="md:hidden absolute inset-0 bg-cover bg-no-repeat scale-105"
     style={{
       backgroundImage: "url('/hero3.jpg')",
-      backgroundPosition: "center 18%", // 🔥 recorta arriba/lados, mantiene personaje visible
+      backgroundPosition: "center 18%",
     }}
   />
 
@@ -69,6 +86,7 @@ useEffect(() => {
   <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(212,175,136,0.15),transparent_60%)]" />
 
 </div>
+
 
       {/* Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/80" />
@@ -100,14 +118,29 @@ useEffect(() => {
         <div className="flex flex-col sm:flex-row gap-6 justify-center">
           <Link
             to="/galeria"
-            className="px-10 py-4 bg-gold text-[#0a0603] font-semibold rounded-full shadow-lg hover:scale-105 transition"
+            className="px-10 py-4 bg-gold text-black text-lg font-semibold rounded-full shadow-lg hover:scale-105 transition"
           >
             Explorar Galería
           </Link>
 
           <Link
             to="/contacto"
-            className="px-10 py-4 border border-gold/60 rounded-full hover:bg-white/10 transition"
+            className="px-10 py-4 border border-gold/60 rounded-full hover:bg-white/10 transition
+                group
+                relative
+                overflow-hidden
+
+                rounded-full
+
+                border border-[#d4af88]/50
+                backdrop-blur-md
+
+                text-white
+                text-lg
+
+                transition-all duration-500
+                hover:scale-105
+              "
           >
             Contactarme
           </Link>
@@ -124,8 +157,8 @@ function App() {
   const navLinks = [
     { name: 'Inicio', to: '/' },
     { name: 'Galería', to: '/galeria' },
-    { name: 'Servicios', to: '/servicios' },
     { name: 'Personajes', to: '/personajes' },
+    { name: 'Servicios', to: '/servicios' },
     { name: 'Contacto', to: '/contacto' },
   ]
 
@@ -147,12 +180,37 @@ function App() {
           </Link>
 
           {/* Desktop */}
-          <div className="hidden md:flex gap-10 text-lg">
+          <div className="hidden md:flex items-center gap-12">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 to={link.to}
-                className="hover:text-gold transition hover:scale-105"
+                className="
+  relative
+
+  text-[1.08rem]
+  font-light
+  tracking-wide
+
+  text-[#f5f0e6]
+
+  transition-all duration-300
+
+  hover:text-[#f0d2ab]
+  hover:scale-105
+
+  after:absolute
+  after:left-0
+  after:-bottom-2
+  after:h-[1px]
+  after:w-0
+  after:bg-[#d4af88]
+
+  after:transition-all
+  after:duration-300
+
+  hover:after:w-full
+"
               >
                 {link.name}
               </Link>
@@ -160,72 +218,140 @@ function App() {
           </div>
 
           {/* Mobile */}
-          <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            {isMenuOpen ? <X /> : <Menu />}
-          </button>
+<button
+  onClick={() => setIsMenuOpen(!isMenuOpen)}
+  className="
+    md:hidden
+
+    p-2 rounded-xl
+
+    border border-white/10
+    bg-white/5
+    backdrop-blur-md
+
+    hover:bg-white/10
+    transition-all duration-300
+  "
+>
+  {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+</button>
         </div>
 
         {/* Mobile Menu */}
-{isMenuOpen && (
-  <motion.div
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    exit={{ opacity: 0 }}
-    className="md:hidden fixed inset-0 z-40"
-  >
-    {/* Fondo oscuro */}
-    <div
-      className="absolute inset-0 bg-black/70 backdrop-blur-md"
-      onClick={() => setIsMenuOpen(false)}
-    />
+    <AnimatePresence>
 
-    {/* Panel */}
-    <motion.div
-      initial={{ y: -40, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      className="
-        absolute top-16 left-1/2 -translate-x-1/2
-        w-[90%] max-w-sm
-        rounded-2xl
-        bg-[rgba(20,12,8,0.85)]
-        backdrop-blur-xl
-        border border-[rgba(212,175,136,0.25)]
-        shadow-[0_20px_60px_rgba(0,0,0,0.5)]
-        p-6
-      "
-    >
-      <div className="flex flex-col gap-4 text-center">
-        {navLinks.map((link) => (
-          <a
-            key={link.name}
-            href={link.to}
-            onClick={() => setIsMenuOpen(false)}
+        {isMenuOpen && (
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             className="
-              py-3 rounded-xl
-              border border-transparent
-              hover:border-gold/40
-              hover:bg-white/5
-              transition-all duration-300
-              text-lg tracking-wide
+              fixed inset-0
+              z-40
+              md:hidden
             "
           >
-            {link.name}
-          </a>
-        ))}
-      </div>
-    </motion.div>
-  </motion.div>
-)}
+
+            {/* Fondo */}
+            <div
+              onClick={() => setIsMenuOpen(false)}
+              className="
+                absolute inset-0
+                bg-black/70
+                backdrop-blur-md
+              "
+            />
+
+            {/* Panel */}
+            <motion.div
+              initial={{ y: -40, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -40, opacity: 0 }}
+              transition={{ duration: 0.35 }}
+
+              className="
+                absolute
+
+                top-24
+                left-4
+                right-4
+
+                rounded-3xl
+
+                border border-[rgba(212,175,136,0.2)]
+
+                bg-[rgba(15,10,8,0.92)]
+
+                backdrop-blur-2xl
+
+                shadow-[0_20px_80px_rgba(0,0,0,0.55)]
+
+                overflow-hidden
+              "
+            >
+
+              <div className="p-5 flex flex-col gap-2">
+
+                {navLinks.map((link, index) => (
+
+                  <motion.div
+                    key={link.name}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{
+                      delay: index * 0.05,
+                    }}
+                  >
+
+                    <Link
+                      to={link.to}
+                      onClick={() => setIsMenuOpen(false)}
+                      className="
+                        block
+
+                        py-4 px-5
+                        rounded-2xl
+
+                        text-lg
+
+                        transition-all duration-300
+
+                        hover:bg-white/5
+                        hover:border-[#d4af88]/20
+                        hover:text-[#f0d2ab]
+
+                        border border-transparent
+                      "
+                    >
+                      {link.name}
+                    </Link>
+
+                  </motion.div>
+
+                ))}
+
+              </div>
+
+            </motion.div>
+
+          </motion.div>
+
+        )}
+
+      </AnimatePresence>
+
       </nav>
 
       {/* CONTENIDO */}
-      <div className="pt-20">
+      <div>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/contacto" element={<Contacto />} />
           <Route path="/galeria" element={<Galeria />} />
-          <Route path="/servicios" element={<Servicios />} />
           <Route path="/personajes" element={<Personajes />} />
+          <Route path="/servicios" element={<Servicios />} />
+          <Route path="/contacto" element={<Contacto />} />
+
         </Routes>
       </div>
 

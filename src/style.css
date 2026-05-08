@@ -34,3 +34,37 @@ h1, h2, h3, h4, h5 {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* ========================================= */
+/* 🎞️ GALLERY SCROLLBAR PREMIUM */
+/* ========================================= */
+
+.gallery-scroll::-webkit-scrollbar {
+  height: 4px;
+  opacity: 0;
+}
+
+.gallery-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.gallery-scroll::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0);
+  border-radius: 999px;
+  transition: all 0.4s ease;
+}
+
+/* 👁️ Sólo aparece al hover */
+.gallery-scroll:hover::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.45);
+}
+
+/* Firefox */
+.gallery-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+.gallery-scroll:hover {
+  scrollbar-color: rgba(0,0,0,0.45) transparent;
+}
