@@ -134,21 +134,212 @@ function Contacto() {
           ))}
         </div>
 
-        {/* 🧠 EXTRA INFO */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.9 }}
-          className="mt-20 max-w-2xl"
-        >
-          <p className="text-sm sm:text-base text-[#e8d5b8]/70 leading-relaxed">
-            ✔ Respuesta en menos de 24h  
-            <br />
-            ✔ Ilustraciones personalizadas  
-            <br />
-            ✔ Uso personal y comercial disponible
+{/* 🌌 ABOUT / EXTRA INFO */}
+<motion.section
+  initial={{ opacity: 0, y: 40 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.9 }}
+  className="mt-28 relative"
+>
+
+  {/* Glow */}
+  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(212,175,136,0.12),transparent_45%)]" />
+
+  <div
+    className="
+      relative
+      overflow-hidden
+      rounded-[2.5rem]
+      border border-[rgba(212,175,136,0.15)]
+      bg-[rgba(18,12,8,0.72)]
+      backdrop-blur-2xl
+      shadow-[0_25px_120px_rgba(0,0,0,0.45)]
+    "
+  >
+
+    {/* Línea superior */}
+    <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-[#d4af88]/40 to-transparent" />
+
+    <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 p-8 sm:p-10 md:p-14">
+
+      {/* ===================== */}
+      {/* BIO */}
+      {/* ===================== */}
+      <div>
+
+        {/* Tag */}
+        <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full border border-gold/15 bg-white/5 mb-8">
+
+          <div className="w-2 h-2 rounded-full bg-[#d4af88]" />
+
+          <span className="text-xs uppercase tracking-[0.3em] text-[#e8d5b8]/60">
+            Sobre la artista
+          </span>
+
+        </div>
+
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-gold leading-tight mb-8">
+          Fantasía, emoción
+          <span className="block text-[#f1d2a9]">
+            y narrativa visual
+          </span>
+        </h2>
+
+        <div className="space-y-6 text-[#e8d5b8]/78 leading-relaxed text-sm sm:text-base md:text-lg">
+
+          <p>
+            Soy <span className="text-[#f1d2a9]">Melany Julieth Plazas Yacue</span>,
+            ilustradora digital y estudiante de Animación 3D en el
+            SENA Ibagué — Centro Industrial y Construcción Regional Tolima.
           </p>
-        </motion.div>
+
+          <p>
+            Desde pequeña he sentido una fuerte conexión con los mundos fantásticos,
+            las historias épicas y los personajes capaces de transmitir emociones
+            profundas con una sola mirada. Cada ilustración nace buscando exactamente eso:
+            crear algo que se sienta vivo.
+          </p>
+
+          <p>
+            Me inspiran especialmente los paisajes naturales, la iluminación cinematográfica
+            y las películas animadas que rompen los límites de la realidad. Intento que cada
+            pieza tenga atmósfera propia, profundidad emocional y una identidad visual memorable.
+          </p>
+
+        </div>
+
+      </div>
+
+      {/* ===================== */}
+      {/* SIDE INFO */}
+      {/* ===================== */}
+      <div className="flex flex-col gap-6">
+
+        {/* Servicios rápidos */}
+        <div
+          className="
+            rounded-[2rem]
+            border border-white/10
+            bg-white/5
+            backdrop-blur-xl
+            p-7
+          "
+        >
+
+          <h3 className="text-xl font-serif text-[#f1d2a9] mb-6">
+            Información rápida
+          </h3>
+
+          <div className="space-y-4">
+
+            {[
+              'Respuesta habitual en menos de 24 horas',
+              'Ilustraciones totalmente personalizadas',
+              'Disponible para proyectos personales y comerciales',
+              'Comunicación directa durante todo el proceso',
+            ].map((item, i) => (
+
+              <div
+                key={i}
+                className="flex items-start gap-4"
+              >
+
+                <div className="mt-2 w-2 h-2 rounded-full bg-[#d4af88]" />
+
+                <p className="text-[#e8d5b8]/75 leading-relaxed text-sm sm:text-base">
+                  {item}
+                </p>
+
+              </div>
+
+            ))}
+
+          </div>
+
+        </div>
+
+        {/* Habilidades */}
+        <div
+          className="
+            rounded-[2rem]
+            border border-[rgba(212,175,136,0.12)]
+            bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02))]
+            p-7
+          "
+        >
+
+          <div className="flex items-center justify-between gap-4 mb-6">
+
+            <h3 className="text-xl font-serif text-[#f1d2a9]">
+              Herramientas & Workflow
+            </h3>
+
+            <div className="px-3 py-1 rounded-full border border-gold/15 bg-black/20 text-xs tracking-[0.2em] uppercase text-[#e8d5b8]/45">
+              Software
+            </div>
+
+          </div>
+
+          <div className="flex flex-wrap gap-3">
+
+            {[
+              'ibisPaint',
+              'ibisPaint X',
+              'Adobe Photoshop',
+              'Krita',
+              'Adobe Illustrator',
+            ].map((skill, i) => (
+
+              <div
+                key={i}
+                className="
+                  px-4 py-2 rounded-full
+                  border border-white/10
+                  bg-white/5
+                  text-sm text-[#f5f0e6]/80
+                  hover:border-[#d4af88]/30
+                  hover:bg-[#d4af88]/10
+                  transition-all duration-300
+                "
+              >
+                {skill}
+              </div>
+
+            ))}
+
+          </div>
+
+          {/* Contact mini */}
+          <div className="mt-8 pt-6 border-t border-white/10">
+
+            <p className="text-xs uppercase tracking-[0.25em] text-[#e8d5b8]/45 mb-3">
+              Contacto directo
+            </p>
+
+            <a
+              href="mailto:plazasjulieth6@gmail.com"
+              className="
+                text-[#f1d2a9]
+                hover:text-white
+                transition-colors duration-300
+                break-all
+              "
+            >
+              plazasjulieth6@gmail.com
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</motion.section>
 
       </div>
     </div>
