@@ -431,6 +431,72 @@ function Galeria() {
 
       </AnimatePresence>
 
+        {/* FINAL CTA */}
+        <motion.section
+          initial={{ opacity: 0, y: 45 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="
+            relative
+            overflow-hidden
+            rounded-[3rem]
+            border border-[rgba(212,175,136,0.15)]
+            bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))]
+            backdrop-blur-2xl
+            p-10 sm:p-14 md:p-20
+            text-center
+          "
+        >
+
+          {/* Glow */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(212,175,136,0.18),transparent_65%)]" />
+
+          <div className="relative z-10 max-w-4xl mx-auto">
+
+            <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full border border-gold/15 bg-white/5 mb-8">
+
+              <Sparkles size={16} className="text-gold" />
+
+              <span className="text-xs uppercase tracking-[0.25em] text-[#e8d5b8]/55">
+                Conoce a mis personajes
+              </span>
+
+            </div>
+
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-serif text-gold leading-tight mb-8">
+              Descubre a todos
+              <span className="block text-[#f1d2a9]">
+                mis fantásticos personajes
+              </span>
+            </h2>
+
+            <p className="max-w-3xl mx-auto text-lg md:text-xl text-[#e8d5b8]/80 leading-relaxed mb-12">
+              Así como he hecho objetos y escenarios, también he dedicado gran
+              parte de mi tiempo y esfuerzo en construir personajes a los
+              que les transmito gran parte de mí misma.
+            </p>
+
+            <a
+              href="/Personajes"
+              className="
+                inline-flex items-center justify-center
+                px-10 py-5 rounded-full
+                bg-gradient-to-r from-[#d4af88] via-[#f1d2a9] to-[#d4af88]
+                text-[#0a0603]
+                font-semibold
+                shadow-[0_0_35px_rgba(212,175,136,0.35)]
+                transition-all duration-500
+                hover:scale-105
+              "
+            >
+              Ver Personajes
+            </a>
+
+          </div>
+
+        </motion.section>
+
     </div>
   )
 }

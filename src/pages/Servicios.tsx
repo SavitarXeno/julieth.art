@@ -191,7 +191,7 @@ function Servicios() {
             <div className="hidden lg:flex items-center gap-3 text-[#e8d5b8]/40">
               <Gem size={18} />
               <span className="tracking-[0.2em] uppercase text-sm">
-                Calidad artística premium
+                Calidad artística
               </span>
             </div>
 
