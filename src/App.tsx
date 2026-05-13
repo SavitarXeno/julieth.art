@@ -8,7 +8,6 @@ import Personajes from './pages/Personajes'
 import Servicios from './pages/Servicios'
 import Contacto from './pages/Contacto'
 
-/* 🧠 Hook: siempre scroll arriba al cambiar página */
 function ScrollToTop() {
   const { pathname } = useLocation()
 
@@ -115,7 +114,7 @@ function Home() {
           Ilustradora Digital • Galería & Arte
         </motion.p>
 
-        <div className="flex flex-col sm:flex-row gap-6 justify-center">
+        <div className="flex flex-col sm:flex-row gap-8 justify-center">
           <Link
             to="/galeria"
             className="px-10 py-4 bg-gold text-black text-lg font-semibold rounded-full shadow-lg hover:scale-105 transition"
@@ -173,8 +172,9 @@ function App() {
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           
           <Link to="/" className="flex items-center gap-3">
-            <span className="text-3xl">🦋</span>
-            <h1 className="text-2xl md:text-3xl font-serif text-gold">
+            <h1 className="text-3xl md:text-3xl font-serif text-gold">
+              🦋
+            </h1>            <h1 className="text-2xl md:text-3xl font-serif text-gold">
               JULIETH
             </h1>
           </Link>
@@ -291,7 +291,7 @@ function App() {
               "
             >
 
-              <div className="p-5 flex flex-col gap-2">
+              <div className="p-6 flex flex-col gap-2">
 
                 {navLinks.map((link, index) => (
 
@@ -344,7 +344,7 @@ function App() {
       </nav>
 
       {/* CONTENIDO */}
-      <div>
+      <div className="main-content">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/galeria" element={<Galeria />} />

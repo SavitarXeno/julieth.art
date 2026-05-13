@@ -12,13 +12,13 @@ import {
   Palette,
   AlertTriangle,
 } from 'lucide-react'
-const [selectedImage, setSelectedImage] = useState<string | null>(null)
 
 function Galeria() {
-
   const fallbackImage = '/fallback.jpg'
-
-  const [selectedImage, setSelectedImage] = useState<string | null>(null)
+const [selectedImage, setSelectedImage] = useState<{
+  sectionIndex: number
+  imageIndex: number
+} | null>(null)
 
   const handleImageError = (
     e: React.SyntheticEvent<HTMLImageElement, Event>
@@ -31,26 +31,65 @@ function Galeria() {
     target.src = fallbackImage
   }
 
+    const getCurrentImage = () => {
+    if (!selectedImage) return null
+
+    return sections[selectedImage.sectionIndex].images[selectedImage.imageIndex]
+  }
+
+  const goNext = () => {
+    if (!selectedImage) return
+
+    const currentSection =
+      sections[selectedImage.sectionIndex]
+
+    const nextIndex =
+      (selectedImage.imageIndex + 1) %
+      currentSection.images.length
+
+    setSelectedImage({
+      sectionIndex: selectedImage.sectionIndex,
+      imageIndex: nextIndex,
+    })
+  }
+
+  const goPrev = () => {
+    if (!selectedImage) return
+
+    const currentSection =
+      sections[selectedImage.sectionIndex]
+
+    const prevIndex =
+      (selectedImage.imageIndex - 1 + currentSection.images.length) %
+      currentSection.images.length
+
+    setSelectedImage({
+      sectionIndex: selectedImage.sectionIndex,
+      imageIndex: prevIndex,
+    })
+  }
+
   const sections = [
     {
       title: 'Ilustraciones',
       icon: <Palette size={22} />,
       desc: 'Narrativas visuales con composición cinematográfica, iluminación atmosférica y emociones cuidadosamente construidas.',
       images: [
-        '/Ilustraciones/pj/julieth.jpeg',
+        '/Ilustraciones/pj/chicamariposa.jpeg',
         '/Ilustraciones/pj/mexafood.webp',
         '/Ilustraciones/pj/mexafood1.webp',
-        '/Ilustraciones/pj/chicamariposa.jpeg',
+        '/Ilustraciones/pj/hero3.jpg',
+        '/Ilustraciones/pj/pato.jpeg',
+        '/Ilustraciones/pj/rubia.jpeg',
         '/Ilustraciones/pj/fantasma.jpeg',
         '/Ilustraciones/pj/rubiacorto.jpeg',
         '/Ilustraciones/pj/reina.jpeg',
-        '/Ilustraciones/pj/rubia.jpeg',
-        '/Ilustraciones/pj/pato.jpeg',
         '/Ilustraciones/pj/corto1.jpeg',
         '/Ilustraciones/pj/monja.jpeg',
         '/Ilustraciones/pj/monja3.jpeg',
         '/Ilustraciones/pj/monja1.jpeg',
         '/Ilustraciones/pj/monja2.jpeg',
+        '/Ilustraciones/pj/julieth.jpeg',
         '/Ilustraciones/pj/niñahalloween.jpeg',
         '/Ilustraciones/pj/corto.jpeg',
         '/Ilustraciones/pj/Earth.jpeg',
@@ -64,10 +103,10 @@ function Galeria() {
       icon: <Mountain size={22} />,
       desc: 'Paisajes diseñados para transmitir calma, fantasía, nostalgia y profundidad ambiental.',
       images: [
-        '/Ilustraciones/escenario/navidad.jpeg',
         '/Ilustraciones/escenario/cielo1.jpeg',
         '/Ilustraciones/escenario/cielo.jpeg',
         '/Ilustraciones/escenario/cielo2.jpeg',
+        '/Ilustraciones/escenario/navidad.jpeg',
       ],
     },
 
@@ -83,6 +122,41 @@ function Galeria() {
 //        '/Ilustraciones/pj15.jpg',
 //        '/Ilustraciones/pj16.jpg',
 //        '/Ilustraciones/pj17.jpg',
+      ],
+    },
+
+    {
+      title: 'Retratos',
+      icon: <UserCircle2 size={22} />,
+      desc: 'Retratos estilizados con enfoque expresivo, detalles suaves y una estética semi realista.',
+      images: [
+        '/Ilustraciones/retrato/jorge.jpg',
+        '/Ilustraciones/retrato/julieta.jpg',
+        '/Ilustraciones/retrato/SiroHilo.jpeg',
+        '/Ilustraciones/retrato/jorge1.jpeg',
+        '/Ilustraciones/retrato/jorge2.jpeg',
+        '/Ilustraciones/retrato/jorge3.jpeg',
+        '/Ilustraciones/retrato/jorge4.jpeg',
+      ],
+    },
+
+    {
+      title: 'Lapiz',
+      icon: <UserCircle2 size={22} />,
+      desc: 'Dibujos hechos a mano.',
+      images: [
+        '/Ilustraciones/mano/Felicia.jpeg',
+        '/Ilustraciones/mano/Ernalin1.jpeg',
+        '/Ilustraciones/mano/maga.jpeg',
+        '/Ilustraciones/mano/vestido.jpeg',
+        '/Ilustraciones/mano/Vestidos.jpeg',
+        '/Ilustraciones/mano/Vestidos1.jpeg',
+        '/Ilustraciones/mano/Dx.jpeg',
+        '/Ilustraciones/mano/Ernalin.jpeg',
+        '/Ilustraciones/mano/reina1.jpeg',
+        '/Ilustraciones/mano/bocetos.jpeg',
+        '/Ilustraciones/mano/bocetos1.jpeg',
+        '/Ilustraciones/mano/bocetos2.jpeg',
       ],
     },
 
@@ -115,40 +189,6 @@ function Galeria() {
       ],
     },
 
-    {
-      title: 'Retratos',
-      icon: <UserCircle2 size={22} />,
-      desc: 'Retratos estilizados con enfoque expresivo, detalles suaves y una estética semi realista.',
-      images: [
-        '/Ilustraciones/retrato/jorge4.jpeg',
-        '/Ilustraciones/retrato/julieta.jpg',
-        '/Ilustraciones/retrato/SiroHilo.jpeg',
-        '/Ilustraciones/retrato/jorge1.jpeg',
-        '/Ilustraciones/retrato/jorge2.jpeg',
-        '/Ilustraciones/retrato/jorge3.jpeg',
-        '/Ilustraciones/retrato/jorge4.jpeg',
-      ],
-    },
-
-    {
-      title: 'Lapiz',
-      icon: <UserCircle2 size={22} />,
-      desc: 'Dibujos hechos a mano.',
-      images: [
-        '/Ilustraciones/mano/Felicia.jpeg',
-        '/Ilustraciones/mano/Ernalin1.jpeg',
-        '/Ilustraciones/mano/maga.jpeg',
-        '/Ilustraciones/mano/vestido.jpeg',
-        '/Ilustraciones/mano/Vestidos.jpeg',
-        '/Ilustraciones/mano/Vestidos1.jpeg',
-        '/Ilustraciones/mano/Dx.jpeg',
-        '/Ilustraciones/mano/Ernalin.jpeg',
-        '/Ilustraciones/mano/reina1.jpeg',
-        '/Ilustraciones/mano/bocetos.jpeg',
-        '/Ilustraciones/mano/bocetos1.jpeg',
-        '/Ilustraciones/mano/bocetos2.jpeg',
-      ],
-    },
   ]
 
   return (
@@ -228,11 +268,6 @@ function Galeria() {
             "
             style={{
               backgroundImage: "url('/herogalery1.jpg')",
-
-              /*
-                Mantiene personaje visible
-                sin deformar la composición
-              */
               backgroundPosition: 'center 12%',
             }}
           />
@@ -261,12 +296,21 @@ function Galeria() {
             transition={{ duration: 1 }}
           >
 
-            <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full border border-gold/20 bg-white/5 backdrop-blur-xl mb-8">
+<div className="inline-flex items-center gap-3 px-6 py-3 rounded-3xl 
+                border border-[#d4af88]/30 bg-white/5 backdrop-blur-2xl 
+                mb-10 shadow-inner">
 
-              <Sparkles size={18} className="text-gold" />
+<div className="relative">
+  <Sparkles size={20} className="text-[#d4af88]" />
+  <div className="
+    absolute inset-0 
+    bg-[#d4af88] blur-md opacity-30 rounded-full
+    w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12
+  " />
+</div>
 
-              <span className="text-sm tracking-[0.2em] uppercase text-[#e8d5b8]/70">
-                Portfolio Visual
+              <span className="text-xs uppercase tracking-[0.28em] text-[#e8d5b8]/60">
+                Portafolio Visual
               </span>
 
             </div>
@@ -314,7 +358,7 @@ function Galeria() {
                     </div>
 
                     <span className="text-sm tracking-[0.25em] uppercase text-[#e8d5b8]/50">
-                      Colección
+                      Colección ☘️
                     </span>
 
                   </div>
@@ -350,7 +394,7 @@ function Galeria() {
                 <div
                   className="
                     gallery-scroll
-                    flex gap-6 overflow-x-auto pb-6
+                    flex gap-8 overflow-x-auto pb-6
                     snap-x snap-mandatory
                     transition-all duration-500
                   "
@@ -367,7 +411,7 @@ function Galeria() {
                         relative
                         min-w-[88vw]
                         sm:min-w-[420px]
-                        lg:min-w-[520px]
+                        lg:min-w-[416px]
                         snap-center
                       "
                     >
@@ -386,19 +430,36 @@ function Galeria() {
                       >
 
                         {/* IMAGE CONTAINER */}
-                        <div className="relative aspect-[4/5] overflow-hidden">
+                        <div
+                          className="relative aspect-[4/5] overflow-hidden cursor-pointer"
+                          onClick={() =>
+                          setSelectedImage({
+                          sectionIndex,
+                          imageIndex,
+                            })
+                              }
+                          >
 
                           {/* IMAGE */}
-                          <img
-                            src={image}
-                            alt={`Artwork ${imageIndex + 1}`}
-                            loading="lazy"
-                            decoding="async"
-                            onError={handleImageError}
-                            className="
-                              w-full h-full object-cover
-                              transition-transform duration-700
-                              group-hover:scale-105
+                          
+                      <img
+                        src={image}
+                        alt={`Artwork ${imageIndex + 1}`}
+                        loading="lazy"
+                        decoding="async"
+                        onError={handleImageError}
+                        onClick={() =>
+                        setSelectedImage({
+                        sectionIndex,
+                        imageIndex,
+                        })
+                          }
+
+                          className="
+                          w-full h-full object-cover
+                          transition-transform duration-700
+                          group-hover:scale-105
+                          cursor-pointer
                             "
                           />
 
@@ -441,7 +502,12 @@ function Galeria() {
 
                      {/* ACTION - Expand Button */}
                     <button
-                     onClick={() => setSelectedImage(image)}
+                      onClick={() =>
+                       setSelectedImage({
+                       sectionIndex,
+                       imageIndex,
+                         })
+                        }
                       className="
                       absolute top-5 right-5
                       w-12 h-12
@@ -497,44 +563,106 @@ function Galeria() {
 
       </section>
 
-      {/* FULLSCREEN VIEWER */}
-      <AnimatePresence>
-        {selectedImage && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-xl flex items-center justify-center p-4 md:p-6 overflow-hidden"
-            onClick={() => setSelectedImage(null)}
-          >
-            {/* Botón cerrar */}
-            <button
-              onClick={() => setSelectedImage(null)}
-              className="absolute top-6 right-6 z-50 w-14 h-14 rounded-2xl bg-black/70 hover:bg-black/90 border border-white/20 flex items-center justify-center text-white transition-all hover:scale-110"
-            >
-              <X size={28} />
-            </button>
+{/* FULLSCREEN VIEWER */}
+<AnimatePresence>
+  {selectedImage && (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-xl flex items-center justify-center p-4 md:p-6 overflow-hidden"
+      onClick={() => setSelectedImage(null)}
+    >
+      {/* BOTÓN CERRAR */}
+      <button
+        onClick={() => setSelectedImage(null)}
+        className="absolute top-6 right-6 z-50 w-14 h-14 rounded-2xl bg-black/70 hover:bg-black/90 border border-white/20 flex items-center justify-center text-white transition-all hover:scale-110"
+      >
+        <X size={28} />
+      </button>
 
-            {/* Imagen */}
-            <motion.img
-              initial={{ scale: 0.92, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.92, opacity: 0 }}
-              transition={{ duration: 0.4 }}
-              src={selectedImage}
-              alt="Vista completa"
-              onError={handleImageError}
-              className="max-w-full max-h-[92vh] object-contain rounded-2xl shadow-2xl"
-              onClick={(e) => e.stopPropagation()} // Evita cerrar al hacer clic en la imagen
-            />
+      {/* BOTÓN IZQUIERDA */}
+      <button
+        onClick={(e) => {
+          e.stopPropagation()
+          goPrev()
+        }}
+        className="
+          absolute left-4 md:left-8
+          z-50
+          w-14 h-14
+          rounded-2xl
+          bg-black/60
+          border border-white/15
+          backdrop-blur-xl
+          flex items-center justify-center
+          text-white
+          transition-all duration-300
+          hover:scale-110
+          hover:bg-[#d4af88]
+          hover:text-black
+        "
+      >
+        <ChevronLeft size={28} />
+      </button>
 
-            {/* Indicador para cerrar en móvil */}
-            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 md:hidden text-white/60 text-sm tracking-widest">
-              Toca fuera para cerrar
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* BOTÓN DERECHA */}
+      <button
+        onClick={(e) => {
+          e.stopPropagation()
+          goNext()
+        }}
+        className="
+          absolute right-4 md:right-8
+          z-50
+          w-14 h-14
+          rounded-2xl
+          bg-black/60
+          border border-white/15
+          backdrop-blur-xl
+          flex items-center justify-center
+          text-white
+          transition-all duration-300
+          hover:scale-110
+          hover:bg-[#d4af88]
+          hover:text-black
+        "
+      >
+        <ChevronRight size={28} />
+      </button>
+
+      {/* IMAGEN */}
+      <motion.img
+        key={getCurrentImage()}
+        initial={{ scale: 0.92, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.92, opacity: 0 }}
+        transition={{ duration: 0.35 }}
+        src={getCurrentImage() || fallbackImage}
+        alt="Vista completa"
+        onError={handleImageError}
+        className="max-w-full max-h-[92vh] object-contain rounded-2xl shadow-2xl"
+        onClick={(e) => e.stopPropagation()}
+        drag="x"
+        dragConstraints={{ left: 0, right: 0 }}
+        onDragEnd={(_, info) => {
+          if (info.offset.x < -120) {
+            goNext()
+          }
+
+          if (info.offset.x > 120) {
+            goPrev()
+          }
+        }}
+      />
+
+      {/* TEXTO MOBILE */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 md:hidden text-white/60 text-sm tracking-widest">
+        Desliza o toca fuera para cerrar
+      </div>
+    </motion.div>
+  )}
+</AnimatePresence>
 
       {/* FINAL CTA */}
       <motion.section

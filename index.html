@@ -1,13 +1,67 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
-  <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ilustración Digital & Arte • Melany Julieth</title>
-<meta name="description" content="Portfolio oficial de Melany Julieth. Ilustración digital, concept art, retratos, escenarios y diseño visual cinematográfico."/>
-<meta name="theme-color" content="#0a0603" />
+
+    <!-- ========================================= -->
+    <!-- 🧩 FAVICONS - PRIORIDAD AGRESIVA PNG -->
+    <!-- ========================================= -->
+    <!-- Prioridad máxima al PNG -->
+    <link rel="icon" type="image/png" href="/favicon.png" sizes="any" />
+    <link rel="icon" type="image/png" href="/favicon.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/favicon.png" sizes="16x16" />
+    
+    <!-- Shortcut icon (ayuda con compatibilidad antigua) -->
+    <link rel="shortcut icon" type="image/png" href="/favicon.png" />
+    
+    <!-- Más tamaños explícitos para mayor fuerza -->
+    <link rel="icon" type="image/png" href="/favicon.png" sizes="64x64" />
+    <link rel="icon" type="image/png" href="/favicon.png" sizes="128x128" />
+    <link rel="icon" type="image/png" href="/favicon.png" sizes="192x192" />
+
+      <!-- Shortcut icon (ayuda con compatibilidad antigua) -->
+    <link rel="shortcut icon" type="image/png" href="/favicon.png" />
+
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.webmanifest" />
+
+    <!-- ========================================= -->
+    <!-- 🎨 THEME & SEO -->
+    <!-- ========================================= -->
+    <meta name="theme-color" content="#0a0603" />
+    <meta name="color-scheme" content="dark" />
+
+    <title>Ilustración Digital & Arte • Melany Julieth</title>
+    <meta name="description" content="Portfolio oficial de Melany Julieth. Ilustración digital, concept art, retratos, escenarios y diseño visual cinematográfico." />
+    <meta name="author" content="Melany Julieth" />
+    <meta name="keywords" content="arte digital, ilustración digital, concept art, portfolio, dibujos, personajes, fantasy art, Melany Julieth" />
+
+    <!-- ========================================= -->
+    <!-- 🔍 OPEN GRAPH + TWITTER -->
+    <!-- ========================================= -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Melany Julieth • Arte Digital" />
+    <meta property="og:description" content="Galería oficial de ilustración digital, concept art y diseño visual." />
+    <meta property="og:image" content="/hero.jpg" />
+    <meta property="og:url" content="https://julieth-art.vercel.app/" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Melany Julieth • Arte Digital" />
+    <meta name="twitter:description" content="Portfolio oficial de ilustración digital." />
+    <meta name="twitter:image" content="/hero.jpg" />
+
+    <!-- ========================================= -->
+    <!-- ⚡ PERFORMANCE -->
+    <!-- ========================================= -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Preload del hero image -->
+    <link rel="preload" href="/hero.jpg" as="image" type="image/jpeg" />
   </head>
+
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>

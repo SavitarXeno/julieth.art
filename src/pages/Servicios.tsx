@@ -13,18 +13,6 @@ import {
 
 function Servicios() {
   const services = [
-    {
-      title: 'Retratos',
-      icon: <Palette size={22} />,
-      desc: 'Retratos estilizados y semi realistas con enfoque cinematográfico, expresividad emocional y detalles cuidadosamente trabajados.',
-      price: 'Desde $20 USD',
-      includes: [
-        'Iluminación detallada',
-        'Expresiones personalizadas',
-        'Render semi realista',
-        'Paleta artística',
-      ],
-    },
 
     {
       title: 'Ilustración Completa',
@@ -36,6 +24,19 @@ function Servicios() {
         'Narrativa visual',
         'Múltiples personajes',
         'Diseño cinematográfico',
+      ],
+    },
+
+        {
+      title: 'Escenarios y/o Paisajes',
+      icon: <Palette size={22} />,
+      desc: 'Escenarios, principalmente panorámicos de gran formato, con alto efuerzo en el detalle casi hiperrealista, y una atmósfera cinematográfica. Cada pieza está trabajada con especial atención en la iluminación dramática, las sombras volumétricas y la profundidad ambiental.',
+      price: 'Cotización personalizada',
+      includes: [
+        'Iluminación detallada',
+        'Detalles personalizados',
+        'Objetos semi realista',
+        'Paleta artística semi acuarela',
       ],
     },
 
@@ -132,7 +133,7 @@ function Servicios() {
       </div>
 
       {/* CONTENT */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-28">
+      <div className="relative z-10 max-w-6xl mx-auto px-6 pt-32 pb-28">
 
         {/* HERO */}
         <section className="max-w-5xl mb-28">
@@ -143,12 +144,21 @@ function Servicios() {
             transition={{ duration: 1 }}
           >
 
-            <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full border border-gold/15 bg-white/5 backdrop-blur-xl mb-8">
+<div className="inline-flex items-center gap-3 px-6 py-3 rounded-3xl 
+                border border-[#d4af88]/30 bg-white/5 backdrop-blur-2xl 
+                mb-10 shadow-inner">
 
-              <Sparkles size={18} className="text-gold" />
+<div className="relative">
+  <Sparkles size={20} className="text-[#d4af88]" />
+  <div className="
+    absolute inset-0 
+    bg-[#d4af88] blur-md opacity-30 rounded-full
+    w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12
+  " />
+</div>
 
               <span className="text-xs uppercase tracking-[0.28em] text-[#e8d5b8]/60">
-                Comisiones abiertas
+                Servicios y Comisiones
               </span>
 
             </div>
@@ -164,7 +174,7 @@ function Servicios() {
               Ilustraciones digitales desarrolladas con enfoque cinematográfico,
               narrativa visual y una dirección artística orientada a emociones,
               atmósfera y composición. Cada pieza busca sentirse viva,
-              memorable y profundamente personal.
+              memorable y profundamente personal. 🌸
             </p>
 
           </motion.div>

@@ -67,7 +67,7 @@ function Contacto() {
           >
             Trabajo cada ilustración con su debida importancia, combinando técnica,
             esfuerzo y emoción. Si buscas algo que realmente destaque,
-            estás exactamente donde debes estar, porque deseo manifestar tus sueños.
+            estás exactamente donde debes estar, porque deseo manifestar tus sueños. 🪻
           </motion.p>
 
           {/* CTA */}
@@ -93,7 +93,7 @@ function Contacto() {
         <div className="my-16 h-[1px] bg-gradient-to-r from-transparent via-[#d4af88]/40 to-transparent" />
 
         {/* 🌐 REDES */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
           {links.map((link, i) => (
             <motion.a
@@ -105,7 +105,7 @@ function Contacto() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 + i * 0.08 }}
               className="
-                group relative p-5 sm:p-6 rounded-2xl
+                group relative p-6 sm:p-6 rounded-2xl
                 border border-gold/20
                 backdrop-blur-lg bg-white/5
                 overflow-hidden
@@ -142,10 +142,6 @@ function Contacto() {
   transition={{ duration: 0.9 }}
   className="mt-28 relative"
 >
-
-  {/* Glow */}
-  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(212,175,136,0.12),transparent_45%)]" />
-
   <div
     className="
       relative
@@ -157,15 +153,16 @@ function Contacto() {
       shadow-[0_25px_120px_rgba(0,0,0,0.45)]
     "
   >
+    {/* Glow Corregido - Ahora está dentro del contenedor redondeado */}
+    <div className="absolute inset-0 rounded-[2.5rem] bg-[radial-gradient(circle_at_top_left,rgba(212,175,136,0.14),transparent_50%)] pointer-events-none" />
 
     {/* Línea superior */}
-    <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-[#d4af88]/40 to-transparent" />
+    <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-[#d4af88]/40 to-transparent relative z-10" />
 
-    <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 p-8 sm:p-10 md:p-14">
+    <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 p-8 sm:p-10 md:p-14 relative z-10">
 
-      {/* ===================== */}
+
       {/* BIO */}
-      {/* ===================== */}
       <div>
 
         {/* Tag */}
@@ -211,10 +208,8 @@ function Contacto() {
 
       </div>
 
-      {/* ===================== */}
       {/* SIDE INFO */}
-      {/* ===================== */}
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-8">
 
         {/* Servicios rápidos */}
         <div
